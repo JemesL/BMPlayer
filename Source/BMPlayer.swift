@@ -290,9 +290,14 @@ open class BMPlayer: UIView {
             break
         }
     }
-    
+
     fileprivate func verticalMoved(_ value: CGFloat) {
-        self.isVolume ? (self.volumeViewSlider.value -= Float(value / 10000)) : (UIScreen.main.brightness -= value / 10000)
+        if BMPlayerConf.enableVolumeGestures && self.isVolume{
+            self.volumeViewSlider.value -= Float(value / 10000)
+        }
+        else if BMPlayerConf.enableBrightnessGestures && !self.isVolume{
+            UIScreen.main.brightness -= value / 10000
+        }
     }
     
     fileprivate func horizontalMoved(_ value: CGFloat) {
