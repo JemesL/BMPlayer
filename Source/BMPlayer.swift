@@ -374,6 +374,17 @@ open class BMPlayer: UIView {
         configureVolume()
         preparePlayer()
     }
+
+    public init(customControlView: BMPlayerControlView?, config: BMPlayerConfig?) {
+        super.init(frame:CGRect.zero)
+        self.customControlView = customControlView
+        self.config = config
+        initUI()
+        initUIData()
+        configureVolume()
+        preparePlayer()
+    }
+
     
     public convenience init() {
         self.init(customControlView:nil)
