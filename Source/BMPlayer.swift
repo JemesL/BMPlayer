@@ -408,7 +408,7 @@ open class BMPlayer: UIView {
             make.edges.equalTo(self)
         }
 
-        if let isEnbleGesture = self.config?.isEnbleGesture {
+        if let isEnbleGesture: Bool = self.config?.isEnbleGesture, isEnbleGesture {
             panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
             self.addGestureRecognizer(panGesture)
         }
