@@ -30,6 +30,8 @@ enum BMPanDirection: Int {
 }
 
 open class BMPlayer: UIView {
+
+    open var config: BMPlayerConfig?
     
     open weak var delegate: BMPlayerDelegate?
     
@@ -152,8 +154,11 @@ open class BMPlayer: UIView {
             controlView.hideCoverImageView()
             isURLSet                = true
         }
-        
-        panGesture.isEnabled = true
+        if let config = self.config {
+            if config.isEnbleGesture {
+                panGesture.isEnabled = true
+            }
+        }
         playerLayer?.play()
         isPauseByUser = false
     }
@@ -391,9 +396,11 @@ open class BMPlayer: UIView {
         controlView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
-        
-        panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
-        self.addGestureRecognizer(panGesture)
+
+        if let isEnbleGesture = self.config?.isEnbleGesture {
+            panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
+            self.addGestureRecognizer(panGesture)
+        }
     }
     
     fileprivate func initUIData() {
