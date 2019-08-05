@@ -11,6 +11,6 @@ open class BMPlayerConfig {
     /// tint color
     open var isEnbleGesture: Bool = true
 
-    init() {
+    public init() {
     }
 }
