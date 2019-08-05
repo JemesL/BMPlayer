@@ -483,7 +483,10 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         default:
             break
         }
-        panGesture.isEnabled = state != .playedToTheEnd
+
+        if let isEnbleGesture: Bool = self.config?.isEnbleGesture, isEnbleGesture {
+            panGesture.isEnabled = state != .playedToTheEnd
+        }
         delegate?.bmPlayer(player: self, playerStateDidChange: state)
     }
     
